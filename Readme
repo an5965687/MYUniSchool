@@ -1,0 +1,35 @@
+
+# 🎓 MyUniSchool
+
+**MyUniSchool** est une application web de gestion scolaire développée en **PHP/MySQL**.
+
+Elle permet à l’administration d’un établissement de gérer facilement :
+- les utilisateurs (administrateurs, enseignants, étudiants),
+- les classes,
+- les matières,
+- les notes,
+- les bulletins.
+
+---
+
+## 🚀 Fonctionnalités principales
+
+- 🔐 Authentification sécurisée (par rôle : admin, professeur, étudiant)
+- 👨‍🏫 Gestion des classes et des enseignants
+- 📚 Gestion des matières
+- 📝 Saisie et modification des notes
+- 📊 Consultation des bulletins
+- 📁 Tableau de bord administrateur
+
+---
+
+## 💻 Technologies utilisées
+
+- **Langage serveur** : PHP
+- **Base de données** : MySQL
+- **Frontend** : HTML, CSS, JavaScript
+- **Hébergement en ligne** : InfinityFree
+
+---
+
+## 🧩 Structure du projet
