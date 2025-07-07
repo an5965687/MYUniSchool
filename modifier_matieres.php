@@ -1,0 +1,69 @@
+
+<?php
+session_start();
+include "../config/config.php";
+
+$pdo = new PDO("mysql:host=localhost;dbname=gestion_inscription;charset=utf8", "root", "");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("ID invalide !");
+}
+
+$id = (int)$_GET['id'];
+
+if (isset($_POST['modifier'])) {
+    $nom = $_POST['nom'] ?? '';
+    $coef = $_POST['coefficient'] ?? '';
+
+    if ($nom && is_numeric($coef)) {
+        $stmt = $pdo->prepare("UPDATE matieres SET nom = ?, coefficient = ? WHERE id = ?");
+        $stmt->execute([$nom, $coef, $id]);
+        header("Location: matieres.php");
+        exit;
+    } else {
+        $erreur = "Champs requis manquants.";
+    }
+}
+
+$stmt = $pdo->prepare("SELECT * FROM matieres WHERE id = ?");
+$stmt->execute([$id]);
+$matiere = $stmt->fetch();
+
+if (!$matiere) {
+    die("Matière introuvable !");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Matière</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; padding: 20px; }
+        form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 5px #ccc; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; }
+        .btn { background: #2196F3; color: white; border: none; }
+        .btn:hover { background: #1976D2; }
+        .erreur { color: red; text-align: center; }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Modifier une matière</h2>
+
+<?php if (!empty($erreur)): ?>
+    <p class="erreur"><?= htmlspecialchars($erreur) ?></p>
+<?php endif; ?>
+
+<form method="post">
+    <input type="text" name="nom" value="<?= htmlspecialchars($matiere['nom']) ?>" required>
+    <input type="number" name="coefficient" value="<?= htmlspecialchars($matiere['coefficient']) ?>" required>
+    <button type="submit" name="modifier" class="btn">Enregistrer</button>
+</form>
+
+<p style="text-align:center;"><a href="matieres.php">⬅ Retour à la liste</a></p>
+
+</body>
+</html>
