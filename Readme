@@ -14,7 +14,7 @@ Elle permet à l’administration d’un établissement de gérer facilement :
 
 ## 🚀 Fonctionnalités principales
 
-- 🔐 Authentification sécurisée (par rôle : admin, professeur, étudiant)
+- 🔐 Authentification sécurisée (admin)
 - 👨‍🏫 Gestion des classes et des enseignants
 - 📚 Gestion des matières
 - 📝 Saisie et modification des notes
@@ -28,7 +28,7 @@ Elle permet à l’administration d’un établissement de gérer facilement :
 - **Langage serveur** : PHP
 - **Base de données** : MySQL
 - **Frontend** : HTML, CSS, JavaScript
-- **Hébergement en ligne** : InfinityFree
+- **Hébergement en ligne** : 
 
 ---
 
